@@ -1,6 +1,7 @@
 """Tests para la función add(a, b) -> float."""
 
 import pytest
+from pytest import approx
 
 from src.calculator import add
 
@@ -67,11 +68,13 @@ def test_add_suma_con_cero():
 def test_add_suma_decimales():
     """Sumar dos números decimales."""
     assert add(1.5, 2.5) == 4.0
+    assert add(0.1, 0.2) == approx(0.3)
 
 @pytest.mark.parametrize("a,b,expected", [
-    (1.5, 2.5, 4.0),
+    (1.5, 2.5, 4.0),   
     (0.1, 0.2, 0.3),
 ])
 def test_add_parametrizado_decimales(a, b, expected):
     assert add(a, b) == expected
+
     
